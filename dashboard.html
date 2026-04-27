@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html>
+<head>
+<script src="https://cdn.tailwindcss.com"></script>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+<meta charset="UTF-8">
+<title>Dashboard - GoldNotes</title>
+
+<style>
+body{
+font-family:'Poppins',sans-serif;
+background:linear-gradient(to bottom,#f8f6f2,#f3efe7);
+}
+.card{
+background:white;
+border-radius:20px;
+box-shadow:0 10px 25px rgba(0,0,0,0.08);
+}
+@keyframes blink{
+0%{opacity:1;}
+50%{opacity:0.4;}
+100%{opacity:1;}
+}
+.blink{
+animation:blink 1.5s infinite;
+}
+</style>
+
+</head>
+
+<body>
+
+<header class="bg-white shadow-md p-4 flex items-center justify-between">
+
+<div class="flex items-center gap-3">
+<img src="assets/logo.png" class="w-10">
+<span class="text-xl font-bold text-yellow-700">GoldNotes</span>
+</div>
+
+<div class="hidden md:flex w-1/3 relative">
+<input id="searchInput" type="text" placeholder="Search semester or subject..." class="w-full p-2 rounded-xl border">
+<div id="searchResults" class="absolute top-10 w-full bg-white shadow-lg rounded-xl hidden z-50 max-h-60 overflow-y-auto"></div>
+</div>
+
+<div class="flex items-center gap-4">
+<div class="flex items-center gap-2">
+<img src="assets/logo.png" class="w-8 h-8 rounded-full border">
+<span id="usernameDisplay" class="font-semibold text-gray-700"></span>
+</div>
+
+<button onclick="toggleMenu()" class="text-2xl">☰</button>
+</div>
+
+</header>
+
+<!-- SIDE MENU -->
+<div id="sideMenu" class="hidden fixed right-0 top-0 h-full w-64 bg-white shadow-xl p-6 z-50">
+
+<button onclick="toggleMenu()" class="text-right w-full mb-6 text-xl">✖</button>
+
+<ul class="space-y-4">
+<li><a href="profile.html" onclick="closeMenu()">Profile</a></li>
+<li><a href="mydownloads.html" onclick="closeMenu()">My Downloads</a></li>
+<li><a href="admin-panel.html" onclick="closeMenu()">Admin Panel</a></li>
+<li><a href="index.html">Logout</a></li>
+</ul>
+
+</div>
+
+<!-- HERO -->
+<section class="text-center mt-10 px-4">
+
+<h1 class="text-4xl font-bold text-gray-700 blink">
+Mumbai University
+</h1>
+
+<h2 class="text-3xl font-bold text-yellow-700 mt-2">
+GoldNotes
+</h2>
+
+<h2 class="text-2xl font-bold text-gray-700 mt-2">
+The Best Notes For Success - For SLRTCE Students
+</h2>
+
+<!-- YEAR CARDS -->
+<div class="grid grid-cols-1 md:grid-cols-4 gap-6 mt-10">
+
+<a href="semester.html?year=1" class="card p-6 hover:scale-105 transition">
+<h3 class="text-xl font-semibold">1st Year</h3>
+</a>
+
+<a href="semester.html?year=2" class="card p-6 hover:scale-105 transition">
+<h3 class="text-xl font-semibold">2nd Year</h3>
+</a>
+
+<a href="semester.html?year=3" class="card p-6 hover:scale-105 transition">
+<h3 class="text-xl font-semibold">3rd Year</h3>
+</a>
+
+<a href="semester.html?year=4" class="card p-6 hover:scale-105 transition">
+<h3 class="text-xl font-semibold">4th Year</h3>
+</a>
+
+</div>
+
+</section>
+
+<!-- PROBLEM / SOLUTION -->
+<section class="mt-16 px-6 max-w-6xl mx-auto">
+
+<h2 class="text-2xl font-bold text-center mb-8 text-gray-700">
+Student Problems & Our Smart Solution
+</h2>
+
+<div class="grid md:grid-cols-2 gap-10">
+
+<div class="card p-6">
+<img src="assets/problem.jpg" class="rounded-xl mb-4 w-full object-cover">
+<h3 class="text-xl font-semibold text-red-600 mb-2">Problem Faced by Students</h3>
+<p class="text-gray-600 text-sm">
+Students struggle to find proper notes, PYQs, and study materials from multiple sources.
+</p>
+</div>
+
+<div class="card p-6">
+<img src="assets/solution.jpg" class="rounded-xl mb-4 w-full object-cover">
+<h3 class="text-xl font-semibold text-green-600 mb-2">Our Solution – GoldNotes</h3>
+<p class="text-gray-600 text-sm">
+GoldNotes provides a centralized platform for organized notes and study material.
+</p>
+</div>
+
+</div>
+
+</section>
+
+<footer class="text-center mt-16 mb-6 text-gray-600 text-sm">
+Developed by Team Hackverse - Ritik Pandey
+</footer>
+
+<script>
+
+// ✅ NO LOGIN SYSTEM
+document.getElementById("usernameDisplay").innerText="👤 Guest User";
+
+// MENU
+function toggleMenu(){
+document.getElementById("sideMenu").classList.toggle("hidden");
+}
+
+function closeMenu(){
+document.getElementById("sideMenu").classList.add("hidden");
+}
+
+</script>
+
+</body>
+</html>

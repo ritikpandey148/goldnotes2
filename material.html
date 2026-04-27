@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html>
+<head>
+<script src="https://cdn.tailwindcss.com"></script>
+<meta charset="UTF-8">
+<title>Materials</title>
+
+<style>
+body{
+background: linear-gradient(to bottom,#f8f6f2,#f3efe7);
+}
+.card{
+background:white;
+border-radius:20px;
+box-shadow:0 10px 25px rgba(0,0,0,0.08);
+}
+</style>
+</head>
+
+<body class="p-6">
+
+<!-- 🔙 Back -->
+<button onclick="goBack()" class="mb-6 bg-gray-200 px-4 py-2 rounded-lg">
+⬅ Back
+</button>
+
+<h2 id="subjectTitle" class="text-3xl font-bold text-center text-yellow-700 mb-2"></h2>
+
+<p class="text-center text-gray-600 mb-6">
+Chill karo sab milega 😎, jo chahiye uthalo!
+</p>
+
+<!-- OPTIONS -->
+<div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+
+<button onclick="openLink('study')" class="card p-6">Study Material</button>
+<button onclick="openLink('notes')" class="card p-6">Important Notes</button>
+<button onclick="openLink('pyq')" class="card p-6">PYQs</button>
+<button onclick="openLink('yt')" class="card p-6">Best YT Playlist</button>
+
+</div>
+
+<script>
+
+// 🔥 GET PARAMS
+const params=new URLSearchParams(window.location.search)
+
+const subject=params.get("subject")
+const year=params.get("year")
+const semester=params.get("semester")
+
+document.getElementById("subjectTitle").innerText=subject
+
+
+// 🔥 DATA (YAHAN LINKS DALNE HAI)
+const data = {
+
+// ================= SEM 1 =================
+"Physics":{
+study:"PASTE_LINK",
+notes:"PASTE_LINK",
+pyq:"PASTE_LINK",
+yt:"PASTE_YT_LINK"
+},
+
+"Chemistry":{
+study:"PASTE_LINK",
+notes:"PASTE_LINK",
+pyq:"PASTE_LINK",
+yt:"PASTE_YT_LINK"
+},
+
+"Mathematics I":{
+study:"PASTE_LINK",
+notes:"PASTE_LINK",
+pyq:"PASTE_LINK",
+yt:"PASTE_YT_LINK"
+},
+
+"Basic Electronics":{
+study:"PASTE_LINK",
+notes:"PASTE_LINK",
+pyq:"PASTE_LINK",
+yt:"PASTE_YT_LINK"
+},
+
+"E-Mechanics":{
+study:"PASTE_LINK",
+notes:"PASTE_LINK",
+pyq:"PASTE_LINK",
+yt:"PASTE_YT_LINK"
+},
+
+"c/c++":{
+study:"PASTE_LINK",
+notes:"PASTE_LINK",
+pyq:"PASTE_LINK",
+yt:"PASTE_YT_LINK"
+},
+
+// ================= SEM 2 =================
+"Mathematics II":{
+study:"PASTE_LINK",
+notes:"PASTE_LINK",
+pyq:"PASTE_LINK",
+yt:"PASTE_YT_LINK"
+},
+
+"Python":{
+study:"PASTE_LINK",
+notes:"PASTE_LINK",
+pyq:"PASTE_LINK",
+yt:"PASTE_YT_LINK"
+},
+
+"physics-2":{
+study:"PASTE_LINK",
+notes:"PASTE_LINK",
+pyq:"PASTE_LINK",
+yt:"PASTE_YT_LINK"
+},
+
+"chmistry-2":{
+study:"PASTE_LINK",
+notes:"PASTE_LINK",
+pyq:"PASTE_LINK",
+yt:"PASTE_YT_LINK"
+},
+
+"E-Graphics":{
+study:"PASTE_LINK",
+notes:"PASTE_LINK",
+pyq:"PASTE_LINK",
+yt:"PASTE_YT_LINK"
+},
+
+// ================= SEM 3 =================
+"DBMS":{
+study:"PASTE_LINK",
+notes:"PASTE_LINK",
+pyq:"PASTE_LINK",
+yt:"PASTE_YT_LINK"
+},
+
+"AOA":{
+study:"PASTE_LINK",
+notes:"PASTE_LINK",
+pyq:"PASTE_LINK",
+yt:"PASTE_YT_LINK"
+},
+
+"DMGT":{
+study:"PASTE_LINK",
+notes:"PASTE_LINK",
+pyq:"PASTE_LINK",
+yt:"PASTE_YT_LINK"
+},
+
+"EVS":{
+study:"PASTE_LINK",
+notes:"PASTE_LINK",
+pyq:"PASTE_LINK",
+yt:"PASTE_YT_LINK"
+},
+
+"OOP":{
+study:"PASTE_LINK",
+notes:"PASTE_LINK",
+pyq:"PASTE_LINK",
+yt:"PASTE_YT_LINK"
+},
+
+// ================= SEM 4 =================
+"STO":{
+study:"PASTE_LINK",
+notes:"PASTE_LINK",
+pyq:"PASTE_LINK",
+yt:"PASTE_YT_LINK"
+},
+
+"SEPM":{
+study:"PASTE_LINK",
+notes:"PASTE_LINK",
+pyq:"PASTE_LINK",
+yt:"PASTE_YT_LINK"
+},
+
+"MAM":{
+study:"PASTE_LINK",
+notes:"PASTE_LINK",
+pyq:"PASTE_LINK",
+yt:"PASTE_YT_LINK"
+},
+
+"DT":{
+study:"PASTE_LINK",
+notes:"PASTE_LINK",
+pyq:"PASTE_LINK",
+yt:"PASTE_YT_LINK"
+},
+
+"MDM-info-sec":{
+study:"PASTE_LINK",
+notes:"PASTE_LINK",
+pyq:"PASTE_LINK",
+yt:"PASTE_YT_LINK"
+},
+
+// ================= SEM 5 =================
+"Artificial Intelligence":{
+study:"PASTE_LINK",
+notes:"PASTE_LINK",
+pyq:"PASTE_LINK",
+yt:"PASTE_YT_LINK"
+},
+
+"Web Development":{
+study:"PASTE_LINK",
+notes:"PASTE_LINK",
+pyq:"PASTE_LINK",
+yt:"PASTE_YT_LINK"
+},
+
+"Microprocessors":{
+study:"PASTE_LINK",
+notes:"PASTE_LINK",
+pyq:"PASTE_LINK",
+yt:"PASTE_YT_LINK"
+},
+
+"Data Analytics":{
+study:"PASTE_LINK",
+notes:"PASTE_LINK",
+pyq:"PASTE_LINK",
+yt:"PASTE_YT_LINK"
+},
+
+// ================= SEM 6 =================
+"Machine Learning":{
+study:"PASTE_LINK",
+notes:"PASTE_LINK",
+pyq:"PASTE_LINK",
+yt:"PASTE_YT_LINK"
+},
+
+"Cloud Computing":{
+study:"PASTE_LINK",
+notes:"PASTE_LINK",
+pyq:"PASTE_LINK",
+yt:"PASTE_YT_LINK"
+},
+
+"Compiler Design":{
+study:"PASTE_LINK",
+notes:"PASTE_LINK",
+pyq:"PASTE_LINK",
+yt:"PASTE_YT_LINK"
+},
+
+"Cyber Security":{
+study:"PASTE_LINK",
+notes:"PASTE_LINK",
+pyq:"PASTE_LINK",
+yt:"PASTE_YT_LINK"
+},
+
+// ================= SEM 7 =================
+"Big Data":{
+study:"PASTE_LINK",
+notes:"PASTE_LINK",
+pyq:"PASTE_LINK",
+yt:"PASTE_YT_LINK"
+},
+
+"Blockchain":{
+study:"PASTE_LINK",
+notes:"PASTE_LINK",
+pyq:"PASTE_LINK",
+yt:"PASTE_YT_LINK"
+},
+
+"Internet of Things":{
+study:"PASTE_LINK",
+notes:"PASTE_LINK",
+pyq:"PASTE_LINK",
+yt:"PASTE_YT_LINK"
+},
+
+"Project Phase I":{
+study:"PASTE_LINK",
+notes:"PASTE_LINK",
+pyq:"PASTE_LINK",
+yt:"PASTE_YT_LINK"
+},
+
+// ================= SEM 8 =================
+"Project Phase II":{
+study:"PASTE_LINK",
+notes:"PASTE_LINK",
+pyq:"PASTE_LINK",
+yt:"PASTE_YT_LINK"
+},
+
+"Advanced AI":{
+study:"PASTE_LINK",
+notes:"PASTE_LINK",
+pyq:"PASTE_LINK",
+yt:"PASTE_YT_LINK"
+},
+
+"Mobile App Development":{
+study:"PASTE_LINK",
+notes:"PASTE_LINK",
+pyq:"PASTE_LINK",
+yt:"PASTE_YT_LINK"
+},
+
+"Entrepreneurship":{
+study:"PASTE_LINK",
+notes:"PASTE_LINK",
+pyq:"PASTE_LINK",
+yt:"PASTE_YT_LINK"
+}
+
+};
+
+
+// 🔥 OPEN FUNCTION
+function openLink(type){
+
+if(data[subject] && data[subject][type]){
+
+window.open(data[subject][type],"_blank")
+
+}else{
+
+alert("Notes not available yet")
+
+}
+
+}
+
+
+// 🔙 BACK
+function goBack(){
+window.history.back()
+}
+
+</script>
+
+</body>
+</html>

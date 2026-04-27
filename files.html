@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html>
+<head>
+<script src="https://cdn.tailwindcss.com"></script>
+<meta charset="UTF-8">
+<title>Files - GoldNotes</title>
+
+<style>
+body{
+background: linear-gradient(to bottom,#f8f6f2,#f3efe7);
+}
+.card{
+background:white;
+border-radius:20px;
+box-shadow:0 10px 25px rgba(0,0,0,0.08);
+}
+.gold-btn{
+background: linear-gradient(90deg,#d4af37,#f5d76e);
+}
+</style>
+
+</head>
+
+<body class="p-6">
+
+<button onclick="goBack()" class="mb-6 bg-gray-200 px-4 py-2 rounded-lg">
+⬅ Back
+</button>
+
+<h2 id="pageTitle" class="text-3xl font-bold text-center text-yellow-700 mb-10"></h2>
+
+<div id="contentContainer" class="grid gap-6"></div>
+
+<script>
+
+// ================= PARAMS =================
+const params=new URLSearchParams(window.location.search)
+
+const subject=params.get("subject")
+const type=params.get("type")
+
+document.getElementById("pageTitle").innerText =
+`${subject} - ${type.toUpperCase()}`
+
+
+// ================= DATA =================
+
+// 🔥 YAHI PE TUM LINKS DALOGE
+const data={
+
+// ===== EXAMPLE =====
+"Mathematics I":{
+study:[
+{title:"Unit 1 Notes", link:"PASTE_DRIVE_LINK_HERE"},
+{title:"Unit 2 Notes", link:"PASTE_DRIVE_LINK_HERE"}
+],
+notes:[
+{title:"Important Questions", link:"PASTE_DRIVE_LINK_HERE"}
+],
+pyq:[
+{title:"PYQ 2023", link:"PASTE_DRIVE_LINK_HERE"}
+],
+yt:"PASTE_YOUTUBE_PLAYLIST_LINK"
+},
+
+"DBMS":{
+study:[
+{title:"Unit 1", link:"https://drive.google.com/XXXXX"},
+{title:"Unit 2", link:"https://drive.google.com/XXXXX"}
+],
+notes:[
+{title:"Important Notes", link:"https://drive.google.com/XXXXX"}
+],
+pyq:[
+{title:"PYQ", link:"https://drive.google.com/XXXXX"}
+],
+yt:"https://youtube.com/playlist?list=XXXX"
+}
+
+// ===== ADD MORE SUBJECTS SAME FORMAT =====
+
+}
+
+
+// ================= LOAD =================
+
+const container=document.getElementById("contentContainer")
+
+if(!data[subject]){
+
+container.innerHTML="<p class='text-center text-gray-500'>No data available</p>"
+throw new Error("No subject data")
+
+}
+
+
+// ================= YT =================
+
+if(type==="yt"){
+
+const ytLink=data[subject].yt
+
+if(ytLink){
+
+container.innerHTML=`
+<a href="${ytLink}" target="_blank"
+class="gold-btn px-6 py-3 text-white rounded-xl block text-center">
+Open YouTube Playlist
+</a>
+`
+
+}else{
+
+container.innerHTML="<p class='text-center'>No playlist available</p>"
+
+}
+
+}
+
+
+// ================= FILES =================
+
+else{
+
+const files=data[subject][type]
+
+if(!files || files.length===0){
+
+container.innerHTML="<p class='text-center'>No files available</p>"
+}
+else{
+
+files.forEach(file=>{
+
+const card=document.createElement("div")
+card.className="card p-6"
+
+card.innerHTML=`
+
+<p class="mb-4 font-semibold text-lg">
+${file.title}
+</p>
+
+<div class="flex gap-4">
+
+<a href="${file.link}" target="_blank"
+class="gold-btn px-4 py-2 rounded-xl text-white">
+View
+</a>
+
+<a href="${file.link}" download
+class="bg-black px-4 py-2 rounded-xl text-white">
+Download
+</a>
+
+</div>
+
+`
+
+container.appendChild(card)
+
+})
+
+}
+
+}
+
+
+// ================= BACK =================
+
+function goBack(){
+window.history.back()
+}
+
+</script>
+
+</body>
+</html>

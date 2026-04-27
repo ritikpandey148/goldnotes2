@@ -32,6 +32,13 @@ Chill karo sab milega 😎, jo chahiye uthalo!
 
 <!-- OPTIONS -->
 <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+  </div>
+
+<!-- ✅ ADD THIS BELOW BUTTONS -->
+<div id="noDataMsg" class="hidden text-center mt-10 text-gray-600 text-lg">
+    🚧 Currently no notes are uploaded <br>
+    Please wait, we will upload soon 🙂
+</div>
 
 <button onclick="openLink('study')" class="card p-6">Study Material</button>
 <button onclick="openLink('notes')" class="card p-6">Important Notes</button>
@@ -325,16 +332,18 @@ yt:"PASTE_YT_LINK"
 };
 
 
-// 🔥 OPEN FUNCTION
+// 🔥 OPEN FUNCTION 
 function openLink(type){
 
-if(data[subject] && data[subject][type]){
+const msg = document.getElementById("noDataMsg");
 
-window.open(data[subject][type],"_blank")
+if(data[subject] && data[subject][type] && data[subject][type] !== "PASTE_LINK"){
+
+window.open(data[subject][type], "_blank")
 
 }else{
 
-alert("Notes not available yet")
+msg.classList.remove("hidden");
 
 }
 

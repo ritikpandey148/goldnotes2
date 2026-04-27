@@ -33,13 +33,31 @@ body{
     </p>
 
     <!-- ✅ FIXED -->
-    <a href="dashboard.html">
-        <button class="gold-btn px-8 py-3 rounded-xl text-white font-semibold shadow-lg hover:scale-105 transition">
-            Get Started
-        </button>
-    </a>
+    <button onclick="startApp()" 
+class="gold-btn px-8 py-3 rounded-xl text-white font-semibold shadow-lg hover:scale-105 transition">
+    Get Started
+</button>
 
 </div>
+<script>
+function startApp(){
 
+// 🔊 Voice
+const msg = new SpeechSynthesisUtterance("Don't worry, yaha sab milega");
+
+msg.lang = "en-IN"; // Indian accent
+msg.rate = 1;
+msg.pitch = 1;
+
+speechSynthesis.speak(msg);
+
+// ⏳ thoda delay fir redirect
+setTimeout(() => {
+window.location.href = "dashboard.html";
+}, 1500);
+
+}
+</script>
+    
 </body>
 </html>

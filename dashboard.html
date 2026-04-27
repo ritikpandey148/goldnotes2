@@ -152,6 +152,89 @@ function closeMenu(){
 document.getElementById("sideMenu").classList.add("hidden");
 }
 
+
+// ================= SEARCH DATA =================
+
+const searchData = [
+
+{ name: "SEM 1", link: "semester.html?year=1" },
+{ name: "SEM 2", link: "semester.html?year=1" },
+{ name: "SEM 3", link: "semester.html?year=2" },
+{ name: "SEM 4", link: "semester.html?year=2" },
+{ name: "SEM 5", link: "semester.html?year=3" },
+{ name: "SEM 6", link: "semester.html?year=3" },
+{ name: "SEM 7", link: "semester.html?year=4" },
+{ name: "SEM 8", link: "semester.html?year=4" },
+
+// SUBJECTS
+{ name: "Physics", link: "materials.html?year=1&semester=SEM1&subject=Physics" },
+{ name: "Chemistry", link: "materials.html?year=1&semester=SEM1&subject=Chemistry" },
+{ name: "Mathematics I", link: "materials.html?year=1&semester=SEM1&subject=Mathematics%20I" },
+
+{ name: "DBMS", link: "materials.html?year=2&semester=SEM3&subject=DBMS" },
+{ name: "SEPM", link: "materials.html?year=2&semester=SEM4&subject=SEPM" },
+{ name: "MAM", link: "materials.html?year=2&semester=SEM4&subject=MAM" },
+
+{ name: "Machine Learning", link: "materials.html?year=3&semester=SEM6&subject=Machine%20Learning" },
+
+{ name: "Big Data", link: "materials.html?year=4&semester=SEM7&subject=Big%20Data" }
+
+];
+
+
+// ================= SEARCH LOGIC =================
+
+const searchInput = document.getElementById("searchInput");
+const searchResults = document.getElementById("searchResults");
+
+searchInput.addEventListener("input", function () {
+
+const value = this.value.toLowerCase();
+searchResults.innerHTML = "";
+
+if (value === "") {
+searchResults.classList.add("hidden");
+return;
+}
+
+const filtered = searchData.filter(item =>
+item.name.toLowerCase().includes(value)
+);
+
+if (filtered.length === 0) {
+searchResults.innerHTML = `<div class="p-3 text-gray-500">No results found</div>`;
+searchResults.classList.remove("hidden");
+return;
+}
+
+filtered.forEach(item => {
+
+const div = document.createElement("div");
+
+div.className = "p-3 hover:bg-yellow-100 cursor-pointer border-b";
+div.innerText = item.name;
+
+div.onclick = () => {
+window.location.href = item.link;
+};
+
+searchResults.appendChild(div);
+
+});
+
+searchResults.classList.remove("hidden");
+
+});
+
+
+// CLICK OUTSIDE CLOSE
+document.addEventListener("click", function (e) {
+
+if (!searchInput.contains(e.target) && !searchResults.contains(e.target)) {
+searchResults.classList.add("hidden");
+}
+
+});
 </script>
 
 </body>
